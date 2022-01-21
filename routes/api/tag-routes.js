@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   // find all tags
   const allTags = await Tag.findAll()
   .catch((err) => {
-    res.json(err);
+    res.status(400).json(err);
   });
 
   res.status(200).json(allTags);
@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   const tag = await Tag.findByPk(req.params.id)
   .catch((err) => {
-    res.json(err);
+    res.status(400).json(err);
   });
 
   res.status(200).json(tag);
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     }
   )
   .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
 
   res.status(200).json(createdTag);
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
     }
   )
   .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
 
   res.status(200).json(updatedTag);
@@ -69,7 +69,7 @@ router.delete('/:id', async (req, res) => {
     }
   )
   .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
 
   res.status(200).json(deletedTag);

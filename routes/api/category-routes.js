@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   // find all categories
   const allCategories = await Category.findAll()
   .catch((err) => {
-    res.json(err);
+    res.status(400).json(err);
   });
 
   res.status(200).json(allCategories);
@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   const category = await Category.findByPk(req.params.id)
   .catch((err) => {
-    res.json(err);
+    res.status(400).json(err);
   });
 
   res.status(200).json(category);
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     category_name: req.body.category_name
   })
   .catch((err) => {
-    res.json(err);
+    res.status(400).json(err);
   });
 
   res.status(200).json(createCategory);
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     }
     )
     .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
   
     res.status(200).json(updateCategory);
@@ -67,7 +67,7 @@ router.delete('/:id', async (req, res) => {
     }
     )
     .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
   
     res.status(200).json(deleteCategory);
