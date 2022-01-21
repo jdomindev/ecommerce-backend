@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   .catch((err) => {
     res.json(err);
   });
-  
+
   res.status(200).json(allTags);
   // be sure to include its associated Product data
 });
@@ -26,16 +26,53 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   // create a new tag
+  const createdTag = await Tag.create(
+    {
+      tag_name: req.body.tag_name
+    }
+  )
+  .catch((err) => {
+      res.json(err);
+    });
+
+  res.status(200).json(createdTag);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
+  const updatedTag = await Tag.update(
+    {
+      tag_name: req.body.tag_name
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+  .catch((err) => {
+      res.json(err);
+    });
+
+  res.status(200).json(updatedTag);
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
+  const deletedTag = await Tag.destroy(
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+  .catch((err) => {
+      res.json(err);
+    });
+
+  res.status(200).json(deletedTag);
 });
 
 module.exports = router;
