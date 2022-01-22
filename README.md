@@ -1,6 +1,8 @@
 # E-Commerce Back End
 ## Description
-- Your task is to build the back end for an e-commerce site by modifying starter code. You’ll configure a working Express.js API to use Sequelize to interact with a MySQL database.
+- My goal for this project was to build the back end for an e-commerce site. 
+- This project utilizes an Express.js API to use Sequelize to interact with a MySQL database.
+- This project gave me a better grasp of how to handle relationships between sequelize and express servers, as well as helping me to understand how sequelize works in regards to how to join and make associations between tables of data.
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
@@ -18,7 +20,7 @@
     ![Demo1](./images/.png)
     ![Demo2](./images/.png)
 - Video:
-    - [Demo-video](g)
+    - [Demo-video]()
     ![Demo-gif](./images/.gif)
 ## Credits
 - N/A

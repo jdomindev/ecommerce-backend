@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   try {
     const allProducts = await Product.findAll({
   // be sure to include its associated Products
+  // be sure to include its associated Category and Tag data
       include: [{ model: Category }, { model: Tag, through: ProductTag, as: 'tags' }]
     })
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-  // be sure to include its associated Category and Tag data
+  
 });
 
 // get one product
@@ -25,14 +26,18 @@ router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id, {
   // be sure to include its associated Products
+  // be sure to include its associated Category and Tag data
     include: [{ model: Category }, { model: Tag, through: ProductTag, as: 'tags' }]
     })
+    if(!product) {
+      res.status(404).json({"message": "That Product ID does not exist"});
+      return;
+    }
 
     res.status(200).json(product);
   } catch (err) {
     res.status(400).json(err);
   }
-  // be sure to include its associated Category and Tag data
 });
 
 // create new product
@@ -60,7 +65,7 @@ router.post('/', (req, res) => {
       // if no product tags, just respond
       res.status(200).json(product);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
+    .then((productTagIds) => res.status(201).json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
@@ -112,14 +117,18 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
-    const deleteProduct = await Product.destroy(
-      {
-        where: {
-          id: req.params.id
-        },
-      })
+  const deleteProduct = await Product.destroy(
+    {
+      where: {
+        id: req.params.id
+      },
+    })
+    if(!deleteProduct) {
+      res.status(404).json({"message": "That Product ID does not exist"});
+      return;
+    }
 
-      res.status(200).json(deleteProduct);
+    res.status(200).json(deleteProduct);
   } catch (error) {
     res.status(400).json(err);
   }
