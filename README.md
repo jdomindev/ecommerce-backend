@@ -16,12 +16,11 @@
 ## Usage
 - Github Repo: https://github.com/jdomindev/ecommerce-backend
 - Screenshots:
-    ![Prompt](./images/.png)
-    ![Demo1](./images/.png)
-    ![Demo2](./images/.png)
+    ![GetAllTags](./images/EC-BE-GETAllTags.png)
+    ![GetAllCats](./images/EC-BE-GETAllCats.png)
+    ![GetAllProds](./images/EC-BE-GETAllProds.png)
 - Video:
-    - [Demo-video]()
-    ![Demo-gif](./images/.gif)
+    - [Demo-Video](https://drive.google.com/file/d/1XZ3MAkIPT80h_8chciYdmyDooJpca1RF/view?usp=sharing)
 ## Credits
 - N/A
 ## License
