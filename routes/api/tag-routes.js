@@ -7,7 +7,7 @@ const { update } = require("../../models/Product");
 router.get("/", async (req, res) => {
   // find all tags
   const allTags = await Tag.findAll({
-    include: [{ model: Product, through: ProductTag, as: "products" }],
+    include: [{ model: Product, through: { ProductTag, attributes: ['id', 'product_id', 'tag_id'] }, as: "products" }],
   }).catch((err) => {
     res.status(400).json(err);
   });
@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
   // find a single tag by its `id`
   try {
     const tag = await Tag.findByPk(req.params.id, {
-      include: [{ model: Product, through: ProductTag, as: "products" }],
+      include: [{ model: Product, through: { ProductTag, attributes: ['id', 'product_id', 'tag_id'] }, as: "products" }],
     });
     if (!tag) {
       res.status(404).json({ message: "That Tag ID does not exist" });

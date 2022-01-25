@@ -10,9 +10,8 @@ router.get('/', async (req, res) => {
     const allProducts = await Product.findAll({
   // be sure to include its associated Products
   // be sure to include its associated Category and Tag data
-      include: [{ model: Category }, { model: Tag, through: ProductTag, as: 'tags' }]
-    })
-
+      include: [{ model: Category }, { model: Tag, through: { ProductTag, attributes: ['id', 'product_id', 'tag_id'] }, as: 'tags' }]
+    });
     res.status(200).json(allProducts);
   } catch (err) {
     res.status(400).json(err);
@@ -27,8 +26,8 @@ router.get('/:id', async (req, res) => {
     const product = await Product.findByPk(req.params.id, {
   // be sure to include its associated Products
   // be sure to include its associated Category and Tag data
-    include: [{ model: Category }, { model: Tag, through: ProductTag, as: 'tags' }]
-    })
+    include: [{ model: Category }, { model: Tag, through: { ProductTag, attributes: ['id', 'product_id', 'tag_id'] }, as: 'tags' }]
+    });
     if(!product) {
       res.status(404).json({"message": "That Product ID does not exist"});
       return;

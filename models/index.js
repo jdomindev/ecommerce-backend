@@ -41,10 +41,3 @@ module.exports = {
   Tag,
   ProductTag,
 };
-
-// TODO: 
-
-// TEST ALL END POINTS IN INSOMNIA
-  // GET ALL has duplicate product_id and tag_id for PRODUCT AND TAG 
-// MAKE INSOMNIA VIDEO
-// TAKE SCREENSHOTS?
